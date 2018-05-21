@@ -13,17 +13,27 @@
   <ion-list>
  
     <ion-item>
-      <ion-label floating>Title</ion-label>
-      <ion-input type="text" [(ngModel)]="title"></ion-input>
+      <ion-label stacked>Name</ion-label>
+      <ion-input type="text" [(ngModel)]="model.name"></ion-input>
     </ion-item>
  
     <ion-item>
-      <ion-label floating>Description</ion-label>
-      <ion-input type="text" [(ngModel)]="description"></ion-input>
+      <ion-label stacked>Phone</ion-label>
+      <ion-input type="tel" [(ngModel)]="model.phone"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Birth</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="model.birth"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Active</ion-label>
+      <ion-checkbox [(ngModel)]="model.active"></ion-checkbox>
     </ion-item>
  
   </ion-list>
  
-  <button full ion-button color="secondary" (click)="saveItem()">Save</button>
+  <button full ion-button color="secondary" (click)="save()">Save</button>
  
 </ion-content>

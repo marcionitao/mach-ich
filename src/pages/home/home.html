@@ -3,22 +3,19 @@
     <ion-title>
       Mach-ich!!
     </ion-title>
-    <!--<ion-buttons end>
-      <button ion-button icon-only (click)="addItem()"><ion-icon name="add-circle"></ion-icon></button>
-    </ion-buttons>-->
   </ion-navbar>
 </ion-header>
- 
+
 <ion-content>
   <ion-list>
-    <ion-card *ngFor="let contact of contacts" [ngClass]="{ 'item-inactive': !contact.active }" >
-     
+    <ion-card *ngFor="let item of contacts" [ngClass]="{ 'item-inactive': !item.contact.active }">
+
       <ion-card-header>
-          {{ contact.name }}
+        <h1>{{ item.contact.name }}</h1>
       </ion-card-header>
 
       <ion-card-content>
-        <p>{{ contact.phone }} - {{ contact.birth | date: 'dd/MM/yyyy' }}</p>
+        <p>{{ item.contact.phone }} - {{ item.contact.birth | date:'dd/MM/yyyy' }} </p>
       </ion-card-content>
 
       <ion-row text-center>
@@ -30,24 +27,28 @@
         </ion-col>
 
         <ion-col>
-            <button ion-button icon-left clear small (click)="removetContact(item)">
-              <ion-icon name="trash"></ion-icon>
-              <div>Excluir</div>
-            </button>
-          </ion-col>
+          <button ion-button icon-left clear small (click)="removeContact(item)">
+            <ion-icon name="trash"></ion-icon>
+            <div>Excluir</div>
+          </button>
+        </ion-col>
 
-          <ion-col>
-              <a href="tel: {{ contact.phone }}" ion-button icon-left clear small>
-                <ion-icon name="call"></ion-icon>
-                <div>Ligar</div>
-              </a>
-            </ion-col>
+        <ion-col>
+          <a href="tel: {{ item.contact.phone }}" ion-button icon-left clear small>
+            <ion-icon name="call"></ion-icon>
+            <div>Ligar</div>
+          </a>
+        </ion-col>
       </ion-row>
-    
+
     </ion-card>
 
   </ion-list>
+
   <ion-fab right bottom>
-    <button ion-fab color="danger" (click)="addContact()"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="danger" (click)="addContact()">
+      <ion-icon name="add"></ion-icon>
+    </button>
   </ion-fab>
+  
 </ion-content>

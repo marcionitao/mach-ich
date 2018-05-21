@@ -3,7 +3,7 @@ import { NavController, ModalController, ToastController } from 'ionic-angular';
 import { AddItemPage } from '../add-item/add-item';
 
 import { ServiceProvider } from '../../providers/service/service';
-import { Contact } from '../../model/contact';
+import { ContactList } from './../../model/ContactList';
 
 @Component({
   selector: 'page-home',
@@ -11,41 +11,41 @@ import { Contact } from '../../model/contact';
 })
 export class HomePage {
 
-  public items = [];
-
-  private contacts: Promise<Contact[]>;
-  private contact: Contact;
+  contacts: ContactList[];
 
   constructor(public navCtrl: NavController, 
               public modalCtrl: ModalController, 
               private service: ServiceProvider,
               private toast: ToastController ) {
 
+                
   }
 
-  ionViewDidLoad() {
-    this.contacts = this.getAllContacts();
+  ionViewWillEnter() {
+    this.service.getAll().then(
+      (result) => {
+        console.log(result);
+        this.contacts = result;
+      }
+    );
   }
 
   addContact() {
     this.navCtrl.push(AddItemPage);
   }
 
-  saveItem(item) {
-    this.items.push(item);
+  editContact(item: ContactList) {
+    this.navCtrl.push(AddItemPage, { key: item.key, contact: item.contact });
   }
 
-  editContact(item: Contact) {
-    this.navCtrl.push(AddItemPage, {key: item.key, contact: Contact});
-  }
-
-  getAllContacts(){
-    return this.service.getAll();
-  }
-
-  removeContact(item: Contact){
-    this.service.remove(item.key);
-    this.navCtrl.pop();
+  removeContact(item: ContactList){
+    this.service.remove(item.key)
+    .then(() => {
+      // Removendo do array de items
+      var index = this.contacts.indexOf(item);
+      this.contacts.splice(index, 1);
+      this.toast.create({ message: 'Contato removido.', duration: 3000, position: 'botton' }).present();
+    })
   }
 
 }
