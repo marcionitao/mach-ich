@@ -15,28 +15,28 @@
       </ion-card-header>
 
       <ion-card-content>
-        <p>{{ item.contact.phone }} - {{ item.contact.birth | date:'dd/MM/yyyy' }} </p>
+        <p>{{ item.contact.phone }}  -  {{ item.contact.birth | date:'dd/MM/yyyy' }}</p>
       </ion-card-content>
 
       <ion-row text-center>
         <ion-col>
           <button ion-button icon-left clear small (click)="editContact(item)">
             <ion-icon name="create"></ion-icon>
-            <div>Editar</div>
+            <div>Edit</div>
           </button>
         </ion-col>
 
         <ion-col>
           <button ion-button icon-left clear small (click)="removeContact(item)">
             <ion-icon name="trash"></ion-icon>
-            <div>Excluir</div>
+            <div>Remove</div>
           </button>
         </ion-col>
 
         <ion-col>
           <a href="tel: {{ item.contact.phone }}" ion-button icon-left clear small>
             <ion-icon name="call"></ion-icon>
-            <div>Ligar</div>
+            <div>Call</div>
           </a>
         </ion-col>
       </ion-row>
