@@ -50,4 +50,8 @@ export class AddItemPage {
       return this.service.insert(this.model);
     }
   }
+
+  cancel(){
+    this.navCtrl.popToRoot();
+  }
 }

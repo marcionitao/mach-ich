@@ -3,15 +3,14 @@
     <ion-title>
       Add Item
     </ion-title>
-      <ion-buttons end>
-        <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
-      </ion-buttons>
     </ion-toolbar>
 </ion-header>
  
 <ion-content>
   <ion-list>
- 
+ <ion-card>
+
+
     <ion-item>
       <ion-label stacked>Name</ion-label>
       <ion-input type="text" [(ngModel)]="model.name"></ion-input>
@@ -31,9 +30,17 @@
       <ion-label stacked>Active</ion-label>
       <ion-checkbox [(ngModel)]="model.active"></ion-checkbox>
     </ion-item>
- 
+  </ion-card>
   </ion-list>
- 
-  <button full ion-button color="secondary" (click)="save()">Save</button>
+  
+  <ion-row>
+    <ion-col>
+      <button full ion-button color="secondary" (click)="save()">Save</button>
+    </ion-col>
+    <ion-col>
+      <button full ion-button color="light" (click)="cancel()">Cancel</button>
+    </ion-col>
+  </ion-row>
+  
  
 </ion-content>
