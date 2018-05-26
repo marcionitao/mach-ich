@@ -15,28 +15,32 @@
       </ion-card-header>
 
       <ion-card-content>
-        <p>{{ item.contact.phone }}  -  {{ item.contact.birth | date:'dd/MM/yyyy' }}</p>
+          <ion-row>
+            <ion-col>
+                <span style="float:left;">Fone: {{ item.contact.phone }}</span>
+            </ion-col>
+            <ion-col>
+                <span style="float:right;">Birth: {{ item.contact.birth | date:'dd/MM/yyyy' }}</span>
+            </ion-col>
+          </ion-row> 
       </ion-card-content>
 
       <ion-row text-center>
         <ion-col>
-          <button ion-button icon-left clear small (click)="editContact(item)">
-            <ion-icon name="create"></ion-icon>
-            <div>Edit</div>
+          <button ion-button icon-left clear (click)="editContact(item)" title="Edit">
+            <ion-icon name="create" ></ion-icon>
           </button>
         </ion-col>
 
         <ion-col>
-          <button ion-button icon-left clear small (click)="removeContact(item)">
-            <ion-icon name="trash"></ion-icon>
-            <div>Remove</div>
+          <button ion-button icon-left clear (click)="removeContact(item)" title="Delete">
+            <ion-icon name="trash" ></ion-icon>
           </button>
         </ion-col>
 
         <ion-col>
-          <a href="tel: {{ item.contact.phone }}" ion-button icon-left clear small>
+          <a href="tel: {{ item.contact.phone }}" ion-button icon-left clear title="Call">
             <ion-icon name="call"></ion-icon>
-            <div>Call</div>
           </a>
         </ion-col>
       </ion-row>
@@ -46,7 +50,7 @@
   </ion-list>
 
   <ion-fab right bottom>
-    <button ion-fab color="danger" (click)="addContact()">
+    <button ion-fab color="danger" (click)="addContact()" title="Add">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
